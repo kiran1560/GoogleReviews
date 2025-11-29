@@ -1,104 +1,245 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
+  <title>Updated Review Layout</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
- .review-card {
-  min-width: 320px;
-  max-width: 320px;
-  margin-right: 20px;
-  height: auto !important;
-  overflow: visible !important;
-  flex-shrink: 0;
-}
+   
+    
+    body {
+        background-color: #fff;
+    }
+    .google-color-b { color: #4285f4; } /* Blue */
+    .google-color-r { color: #ea4335; } /* Red */
+    .google-color-y { color: #fbbc05; } /* Yellow */
+    .google-color-g { color: #34a853; } /* Green */
+    
+    .container {
+        max-width: 1200px;
+    }
 
-.profile-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+    .overall-rating-card {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+      width: 250px; 
+      margin-right: 40px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
-.review-text {
-  font-size: 0.9rem;
-  color: #444;
-  max-height: 80px;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
+    .overall-rating-card h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+    }
 
-.review-text.expanded {
-  max-height: 10000px !important;
-  overflow: visible !important;
-}
-
-.read-more {
-  color: #0d6efd;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-
-.carousel-container {
-  position: relative;
-  overflow-x: hidden !important;  
-  overflow-y: visible !important; 
-  padding: 40px 0;
-}
-
-.carousel-track {
-  display: flex;
-  align-items: flex-start !important;
-  height: auto !important;
-  overflow: visible !important;
-  transition: transform 0.4s ease;
-}
-
-.slider-btn {
-  border: none;
-  background: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 22px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-}
-
-#prevBtn { left: 10px; }
-#nextBtn { right: 10px; }
+    .rating-stars-lg {
+      color: #ffc107; 
+      font-size: 24px;
+      letter-spacing: 3px;
+    }
+    
+    .google-logo-full {
+        font-weight: 700;
+        font-size: 30px; 
+        line-height: 1;
+        letter-spacing: -2px; 
+    }
 
 
+
+    .review-card {
+      min-width: 320px; 
+      max-width: 320px;
+      margin-right: 20px;
+  
+      min-height: 230px; 
+      height: auto !important;
+      flex-shrink: 0;
+      border-radius: 8px; 
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); 
+      border: 1px solid #e0e0e0; 
+      background-color: #f7f7f7; 
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 5px;
+    }
+    
+    .reviewer-info {
+        display: flex;
+        align-items: center;
+    }
+    
+    .profile-photo {
+      width: 40px; 
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    
+    .initial-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #fce4ec; 
+      color: #c2185b; 
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+    }
+    
+    .reviewer-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        line-height: 1.2;
+    }
+    
+    .review-date {
+        font-size: 0.8rem;
+        color: #777;
+        font-weight: 400;
+    }
+    
+    .google-g-logo {
+        font-size: 1.5rem; 
+        line-height: 1;
+        font-weight: bold;
+      
+        color: #4285f4; 
+    }
+
+    .review-stars-sm {
+        color: #ffc107;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+    }
+
+    .verified-icon {
+      color: #1a73e8; 
+      font-size: 0.8rem;
+      margin-left: 5px;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: #333;
+      line-height: 1.4;
+  
+      max-height: 100px; 
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      margin-bottom: 0; 
+    }
+
+    .review-text.expanded {
+      max-height: 1000px !important; 
+      overflow: visible !important;
+    }
+
+    .read-more {
+      color: #555555; 
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+
+
+    .carousel-container {
+      position: relative;
+      padding: 40px 60px; 
+      margin: 0;
+      overflow-x: hidden !important;
+      width: 100%; 
+    }
+
+    .carousel-track {
+      display: flex;
+      align-items: flex-start !important;
+      height: auto !important;
+      overflow: visible !important;
+      transition: transform 0.4s ease;
+    }
+
+    .slider-btn {
+      border: 1px solid #ddd;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      width: 44px; 
+      height: 44px;
+      font-size: 22px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      color: #555;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    #prevBtn { left: 5px; } 
+    #nextBtn { right: 5px; }
+    
   </style>
 
 </head>
-<body class="bg-light">
+<body class="bg-white">
 
 <div class="container my-5">
-
-  
-
-  <div class="carousel-container">
-
-    <button id="prevBtn" class="slider-btn">❮</button>
-
-    <div class="carousel-track" id="carousel-track"></div>
-
-    <button id="nextBtn" class="slider-btn">❯</button>
+  <div class="d-flex align-items-stretch" style="position: relative;"> 
+      
+    <div class="overall-rating-card p-3">
+        <h2 class="fw-bold mb-2">EXCELLENT</h2>
+        <div class="rating-stars-lg mb-2">★★★★★</div>
+        <p class="mb-1 text-muted" style="font-size: 0.9rem;">Based on reviews</p>
+        <div class="d-flex align-items-center mt-2">
+             <span class="google-logo-full">
+                <span class="google-color-b">G</span>
+                <span class="google-color-r">o</span>
+                <span class="google-color-y">o</span>
+                <span class="google-color-b">g</span>
+                <span class="google-color-g">l</span>
+                <span class="google-color-r">e</span>
+            </span>
+        </div>
+    </div>
+    
+    <div class="carousel-container">
+      <button id="prevBtn" class="slider-btn">❮</button>
+      <div class="carousel-track" id="carousel-track">
+          </div>
+      <button id="nextBtn" class="slider-btn">❯</button>
+    </div>
 
   </div>
-
 </div>
 
 <script>
   async function loadReviews() {
-    const resp = await fetch("http://localhost:5000/"); // Replace with backend URL
+    // ** Backend URL needed here**
+    const resp = await fetch("http://localhost:5000/"); 
     const data = await resp.json();
 
     let reviews = (data.reviews || []).slice(0, 10);
@@ -107,26 +248,53 @@
 
     reviews.forEach(r => {
       const full = r.text || "";
-      const short = full.slice(0, 120);
-      const stars = "⭐".repeat(r.rating);
+      const short = full.slice(0, 120); 
+      const stars = "★".repeat(r.rating); 
+      
+      let initials = "";
+      if (r.author_name) {
+          const names = r.author_name.split(' ');
+          initials = names.length > 1 ? names[0].charAt(0) : r.author_name.charAt(0); 
+      }
+      
+      const profileContent = (r.profile_photo_url && r.profile_photo_url !== 'null' && r.profile_photo_url !== '')
+          ? `<img src="${r.profile_photo_url}" class="profile-photo" alt="${r.author_name} profile" />`
+          : `<div class="initial-badge">${initials}</div>`;
+          
+      const date = new Date(r.time * 1000);
+      const formattedDate = date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric' 
+      }); 
 
       html += `
         <div class="card review-card p-3">
-          <div class="text-center">
-            <img src="${r.profile_photo_url}" class="profile-photo mb-2" />
-            <h6 class="fw-bold mb-0">${r.author_name}</h6>
-            <div class="text-warning">${stars}</div>
-          </div>
+            <div class="review-header">
+                <div class="reviewer-info">
+                    ${profileContent}
+                    <div>
+                        <p class="reviewer-name mb-0">${r.author_name}</p>
+                        <span class="review-date">${formattedDate}</span>
+                    </div>
+                </div>
+                <span class="google-g-logo">G</span>
+            </div>
 
-          <p class="review-text mt-2" id="text-${r.time}">
-            ${full.length > 120 ? short + "..." : full}
-          </p>
+            <div class="review-stars-sm">
+                ${stars}
+                <i class="fas fa-check-circle verified-icon" title="Verified"></i>
+            </div>
 
-          ${
-            full.length > 120
-            ? `<span class="read-more" onclick="toggleReadMore('${r.time}', \`${full.replace(/`/g, "\\`")}\`)">Read more</span>`
-            : ""
-          }
+            <p class="review-text" id="text-${r.time}">
+                ${full.length > 120 ? short + "..." : full}
+            </p>
+
+            ${
+                full.length > 120
+                ? `<span class="read-more" onclick="toggleReadMore('${r.time}', \`${full.replace(/`/g, "\\`")}\`)">Read more</span>`
+                : ""
+            }
         </div>
       `;
     });
@@ -145,18 +313,19 @@
     } else {
       el.classList.add("expanded");
       el.innerHTML = fullText;
-      btn.innerHTML = "Show less";
+      btn.innerHTML = "Read less";
     }
   }
 
   let index = 0;
+  const cardWidthWithMargin = 340; 
 
   document.getElementById("nextBtn").onclick = () => {
     const track = document.getElementById("carousel-track");
     const cards = track.children.length;
-    if (index < cards - 3) {
+    if (index < cards - 3) { 
       index++;
-      track.style.transform = `translateX(-${index * 340}px)`;
+      track.style.transform = `translateX(-${index * cardWidthWithMargin}px)`;
     }
   };
 
@@ -164,7 +333,7 @@
     const track = document.getElementById("carousel-track");
     if (index > 0) {
       index--;
-      track.style.transform = `translateX(-${index * 340}px)`;
+      track.style.transform = `translateX(-${index * cardWidthWithMargin}px)`;
     }
   };
 
