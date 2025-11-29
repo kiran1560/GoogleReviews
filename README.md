@@ -5,7 +5,7 @@ Setup Instructions:
 1. Clone the repository:
 ```
 
-git clone [https://github.com/kiran1560/GoogleReviews.git](https://github.com/kiran1560/GoogleReviews.git)
+git clone https://github.com/kiran1560/GoogleReviews.git
 
 ```
 2. Navigate into the project directory:
@@ -21,12 +21,9 @@ npm install
 
 ```
 4. Create a `.env` file in the root folder similar to `.env.example`
-```
 
-```
 5. Start the backend server:
 ```
-
 node server.js
 
 ```
