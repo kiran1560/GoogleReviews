@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+ .review-card {
+  min-width: 320px;
+  max-width: 320px;
+  margin-right: 20px;
+  height: auto !important;
+  overflow: visible !important;
+  flex-shrink: 0;
+}
+
+.profile-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  color: #444;
+  max-height: 80px;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.review-text.expanded {
+  max-height: 10000px !important;
+  overflow: visible !important;
+}
+
+.read-more {
+  color: #0d6efd;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+
+.carousel-container {
+  position: relative;
+  overflow-x: hidden !important;  
+  overflow-y: visible !important; 
+  padding: 40px 0;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: flex-start !important;
+  height: auto !important;
+  overflow: visible !important;
+  transition: transform 0.4s ease;
+}
+
+.slider-btn {
+  border: none;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 22px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+#prevBtn { left: 10px; }
+#nextBtn { right: 10px; }
+
+
+  </style>
+
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+
+  
+
+  <div class="carousel-container">
+
+    <button id="prevBtn" class="slider-btn">❮</button>
+
+    <div class="carousel-track" id="carousel-track"></div>
+
+    <button id="nextBtn" class="slider-btn">❯</button>
+
+  </div>
+
+</div>
+
+<script>
+  async function loadReviews() {
+    const resp = await fetch("http://localhost:5000/"); // Replace with backend URL
+    const data = await resp.json();
+
+    let reviews = (data.reviews || []).slice(0, 10);
+
+    let html = "";
+
+    reviews.forEach(r => {
+      const full = r.text || "";
+      const short = full.slice(0, 120);
+      const stars = "⭐".repeat(r.rating);
+
+      html += `
+        <div class="card review-card p-3">
+          <div class="text-center">
+            <img src="${r.profile_photo_url}" class="profile-photo mb-2" />
+            <h6 class="fw-bold mb-0">${r.author_name}</h6>
+            <div class="text-warning">${stars}</div>
+          </div>
+
+          <p class="review-text mt-2" id="text-${r.time}">
+            ${full.length > 120 ? short + "..." : full}
+          </p>
+
+          ${
+            full.length > 120
+            ? `<span class="read-more" onclick="toggleReadMore('${r.time}', \`${full.replace(/`/g, "\\`")}\`)">Read more</span>`
+            : ""
+          }
+        </div>
+      `;
+    });
+
+    document.getElementById("carousel-track").innerHTML = html;
+  }
+
+  function toggleReadMore(id, fullText) {
+    const el = document.getElementById("text-" + id);
+    const btn = event.target;
+
+    if (el.classList.contains("expanded")) {
+      el.classList.remove("expanded");
+      el.innerHTML = fullText.slice(0, 120) + "...";
+      btn.innerHTML = "Read more";
+    } else {
+      el.classList.add("expanded");
+      el.innerHTML = fullText;
+      btn.innerHTML = "Show less";
+    }
+  }
+
+  let index = 0;
+
+  document.getElementById("nextBtn").onclick = () => {
+    const track = document.getElementById("carousel-track");
+    const cards = track.children.length;
+    if (index < cards - 3) {
+      index++;
+      track.style.transform = `translateX(-${index * 340}px)`;
+    }
+  };
+
+  document.getElementById("prevBtn").onclick = () => {
+    const track = document.getElementById("carousel-track");
+    if (index > 0) {
+      index--;
+      track.style.transform = `translateX(-${index * 340}px)`;
+    }
+  };
+
+  loadReviews();
+</script>
+
+
+</body>
+</html>
